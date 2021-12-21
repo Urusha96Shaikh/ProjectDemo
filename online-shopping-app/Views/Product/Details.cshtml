@@ -1,0 +1,61 @@
+﻿@model online_shopping_app.Models.Products
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row">
+            <div class="col">
+                <h3 class="page-title">Product Types List</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="Home/Index">Home</a></li>
+                    <li class="breadcrumb-item active">Product Types List</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content success-page-cont">
+    <div class="container-fluid">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+
+                <!-- Success Card -->
+                <div class="card success-card">
+                    <div class="card-body">
+                        <div class="success-cont">
+                            <label><strong>Product Type:</strong></label>&nbsp;
+                            <label>@Model.Name</label><br />
+                            <label><strong>Price:</strong></label>&nbsp;
+                            <label>@Model.Price</label><br />
+                            <label><strong>Available:</strong></label>&nbsp;
+                            <label>@Model.IsAvailable</label><br />
+                            <label><strong>Product Type:</strong></label>&nbsp;
+                            <label><select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control" readonly="readonly"></select></label><br />
+                            <label><strong>Tag Name:</strong></label>&nbsp;
+                            <label><select asp-for="TagNameId" asp-items="ViewBag.tagNameId" readonly="readonly" class="form-control"></select></label><br />
+                            <div class="col-1"></div>
+                            <div class="col-3">
+                                <img src="@Model.Image" width="100%" />
+                            </div>
+                            <label>@Html.ActionLink("Back To List", "Index", "ProductTypes")</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Success Card -->
+
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync(partialViewName: "_ValidationScriptsPartial");
+    }
+}
+

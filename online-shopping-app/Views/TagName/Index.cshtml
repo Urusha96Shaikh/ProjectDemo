@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TagNames>
+@{
+    ViewData["Title"] = "Tag Names";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <h3 class="text-info">Tag Name List</h3>
+    </div>
+    <div class="col-md-6 text-right">
+        <a class="btn btn-primary" asp-action="Create" asp-controller="TagName"><i class="fa fa-plus"></i>New Tag Name</a>
+    </div>
+</div>
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>@Html.DisplayNameFor(expression: model => model.TagName)</th>
+            <th></th>
+            <th>Action</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TagName</td>
+                <td>
+                    <partial name="_TagNameButtonPartial" model="@item.Id" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@section scripts{
+    
+    @*<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>*@
+<script type="text/javascript">
+                    $(function () {
+                        var save = '@TempData["save"]'
+                        if (save != null) {
+                            alertify.success(save);
+                        }
+                    })
+</script>
+}
+
